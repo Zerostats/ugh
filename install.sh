@@ -2,7 +2,7 @@
 set -e
 
 UGH_INSTALL_PATH="$HOME/.config/ugh"
-
+CURRENT_DIR=$(dirname "$0")
 # Params
 while getopts "p:" opt; do
   case $opt in
@@ -20,7 +20,7 @@ if [ -d "$UGH_INSTALL_PATH" ]; then
   exit 1
 else
   echo "Installing ugh in $UGH_INSTALL_PATH"
-  mkdir -p "$UGH_INSTALL_PATH/script"
-  cp -r ./scripts "$UGH_INSTALL_PATH"
-
+  mkdir -p "$UGH_INSTALL_PATH"
+  cp -r "$CURRENT_DIR/scripts" "$UGH_INSTALL_PATH"
+  find "$UGH_INSTALL_PATH/scripts" -type f -exec chmod +x {} \;
 fi
